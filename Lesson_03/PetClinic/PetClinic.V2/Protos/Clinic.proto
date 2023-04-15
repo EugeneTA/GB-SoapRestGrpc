@@ -1,0 +1,253 @@
+syntax = "proto3";
+
+option csharp_namespace = "PetClinicNamespace";
+
+// Расширение доступных типов данных для protobuf файла
+import "google/protobuf/wrappers.proto";
+
+// Расширение для даты и времени
+import "google/protobuf/timestamp.proto";
+
+
+// https://learn.microsoft.com/ru-ru/aspnet/core/grpc/json-transcoding?view=aspnetcore-7.0
+// Для перекодирование gRPC в контроллеры
+import "google/api/annotations.proto";
+
+// Сервис клиники
+service ClinicService
+{
+	// Добавление клиента
+	rpc CreateClient(CreateClientRequest) returns (CreateClientResponse) {
+		option (google.api.http) = {
+		  post: "/api/client/create",
+		  body: "*"
+		};
+	};
+
+	// Обновление данных о клиенте
+	rpc UpdateClient(UpdateClientRequets) returns (UpdateClientResponse) {
+		option (google.api.http) = {
+		  post: "/api/client/update",
+		  body: "*"
+		};
+	};
+
+	// Удаление клиента
+	rpc DeleteClient(DeleteClientRequets) returns (DeleteClientResponse) {
+		option (google.api.http) = {
+		  delete: "/api/client/delete",
+		  body: "*"
+		};
+	};
+
+	// Получение данных о клиенте по идентификатору
+	rpc GetClientById(GetClientByIdRequest) returns (GetClientByIdResponse) {
+		option (google.api.http) = {
+		  post: "/api/client/getbyid",
+		  body: "*"
+		};
+	};
+
+	// Получение данных по всем клиентам
+	rpc GetClients(GetClientsRequest) returns (GetClientsResponse) {
+		option (google.api.http) = {
+		  get: "/api/client/getall"
+		};
+	};
+
+	// Добавление питомца
+	rpc CreatePet(CreatePetRequest) returns (CreatePetResponse) {
+		option (google.api.http) = {
+		  post: "/api/pet/create",
+		  body: "*"
+		};
+	};
+
+	// Обновление данных о питомце
+	rpc UpdatePet(UpdatePetRequets) returns (UpdatePetResponse)  {
+		option (google.api.http) = {
+		  post: "/api/pet/update",
+		  body: "*"
+		};
+	};
+
+	// Удаление питомца
+	rpc DeletePet(DeletePetRequets) returns (DeletePetResponse)  {
+		option (google.api.http) = {
+		  delete: "/api/pet/delete",
+		  body: "*"
+		};
+	};
+
+	// Получение данных о питомце по идентификатору
+	rpc GetPetById(GetPetByIdRequest) returns (GetPetByIdResponse)  {
+		option (google.api.http) = {
+		  post: "/api/pet/getbyid",
+		  body: "*"
+		};
+	};
+
+	// Получение данных о всех питомцах
+	rpc GetPets(GetPetsRequest) returns (GetPetsResponse)  {
+		option (google.api.http) = {
+		  get: "/api/pet/getall"
+		};
+	};
+}
+
+
+// Client messages
+// Параметры запроса на создание клиента
+message CreateClientRequest
+{
+	// Документ
+	string document = 1;
+	// Имя
+	string firstName = 2;
+	// Фамилия
+	string surname = 3;
+	// Отчество
+	string patronymic = 4;
+}
+
+// Результат создании клиента
+message CreateClientResponse
+{
+	// google.protobuf.Int32Value - nullable type
+	google.protobuf.Int32Value clientid = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
+// Парметры запроса на обновление данных о клиенте
+message UpdateClientRequets
+{
+	int32 clientId = 1;
+	string document = 2;
+	string firstName = 3;
+	string surname = 4;
+	string patronymic = 5;
+}
+
+// Результат обновления данных о клиенте
+message UpdateClientResponse
+{
+	int32 errCode = 1;
+	string errMessage = 2;
+}
+
+message DeleteClientRequets
+{
+	int32 clientId = 1;
+}
+
+message DeleteClientResponse
+{
+	int32 errCode = 1;
+	string errMessage = 2;
+}
+
+message GetClientByIdRequest
+{
+	int32 clientId = 1;
+}
+
+message ClientResponse
+{
+	int32 clientId = 1;
+	string document = 2;
+	string firstName = 3;
+	string surname = 4;
+	string patronymic = 5;
+} 
+
+message GetClientByIdResponse
+{
+	ClientResponse client = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
+message GetClientsRequest
+{
+}
+
+message GetClientsResponse
+{
+	repeated ClientResponse clients = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
+// Pet messages
+
+message CreatePetRequest
+{
+	int32 clientId = 1;
+	string name = 2;
+	google.protobuf.Timestamp  birthday = 3;
+}
+
+message CreatePetResponse
+{
+	// google.protobuf.Int32Value - nullable type
+	google.protobuf.Int32Value petId = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
+message UpdatePetRequets
+{
+	int32 petId = 1;
+	int32 clientId = 2;
+	string name = 3;
+	google.protobuf.Timestamp  birthday = 4;
+}
+
+message UpdatePetResponse
+{
+	int32 errCode = 1;
+	string errMessage = 2;
+}
+
+message DeletePetRequets
+{
+	int32 petId = 1;
+}
+
+message DeletePetResponse
+{
+	int32 errCode = 1;
+	string errMessage = 2;
+}
+
+message GetPetByIdRequest
+{
+	int32 petId = 1;
+}
+
+message PetResponse
+{
+	int32 petId = 1;
+	int32 clientId = 2;
+	string name = 3;
+	google.protobuf.Timestamp  birthday = 4;
+} 
+
+message GetPetByIdResponse
+{
+	PetResponse pet = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
+message GetPetsRequest
+{
+}
+
+message GetPetsResponse
+{
+	repeated PetResponse pets = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
