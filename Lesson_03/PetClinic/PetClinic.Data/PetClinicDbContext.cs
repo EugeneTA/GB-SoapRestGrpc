@@ -5,6 +5,8 @@ namespace PetClinic.Data
 {
     public class PetClinicDbContext : DbContext
     {
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<AccountSession> AccountSessions { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
@@ -26,6 +28,24 @@ namespace PetClinic.Data
                 .WithMany(a => a.Appointments)
                 .HasForeignKey(p => p.ClientId)
                 .OnDelete(DeleteBehavior.NoAction);
+            
+            //modelBuilder.Entity<AccountSession>()
+            //    .Property(p => p.TimeCreated)
+            //    .HasColumnType("datetime2")
+            //    .HasPrecision(0)
+            //    .IsRequired();
+
+            //modelBuilder.Entity<AccountSession>()
+            //    .Property(p => p.TimeClosed)
+            //    .HasColumnType("datetime2")
+            //    .HasPrecision(0)
+            //    .IsRequired();
+
+            //modelBuilder.Entity<AccountSession>()
+            //    .Property(p => p.TimeLastRequest)
+            //    .HasColumnType("datetime2")
+            //    .HasPrecision(0)
+            //    .IsRequired();
         }
 
         public PetClinicDbContext(DbContextOptions options) : base(options) { }

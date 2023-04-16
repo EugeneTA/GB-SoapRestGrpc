@@ -12,6 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="..\PetClinic\Proto\Account.proto" GrpcServices="Client">
+      <Link>Proto\Account.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\PetClinic\Proto\Auth.proto" GrpcServices="Client">
+      <Link>Proto\Auth.proto</Link>
+    </Protobuf>
     <Protobuf Include="..\PetClinic\Proto\Clinic.proto" Link="Proto\Clinic.proto" GrpcServices="Client" />
   </ItemGroup>
 
@@ -22,6 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
   </ItemGroup>
 
 </Project>

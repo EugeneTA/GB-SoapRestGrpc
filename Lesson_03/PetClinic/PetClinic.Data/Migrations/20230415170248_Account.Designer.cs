@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetClinic.Data;
 
@@ -11,9 +12,11 @@ using PetClinic.Data;
 namespace PetClinic.Data.Migrations
 {
     [DbContext(typeof(PetClinicDbContext))]
-    partial class PetClinicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230415170248_Account")]
+    partial class Account
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
