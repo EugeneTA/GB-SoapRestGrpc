@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetClinic.Data", "PetClinic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetClinicClient", "PetClinicClient\PetClinicClient.csproj", "{B1D79F05-353F-49F2-96CD-36B06C59B71E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetClinic.V2", "PetClinic.V2\PetClinic.V2.csproj", "{1AB5524F-F457-41F7-97F7-4AC756054E25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetClinic.V2", "PetClinic.V2\PetClinic.V2.csproj", "{1AB5524F-F457-41F7-97F7-4AC756054E25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

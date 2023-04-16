@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,16 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Proto\Account.proto" />
+    <None Remove="Proto\Auth.proto" />
     <None Remove="Proto\Clinic.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.52.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.53.0">
+    <PackageReference Include="Grpc.Tools" Version="2.54.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -32,6 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="Proto\Account.proto" GrpcServices="Server" />
+    <Protobuf Include="Proto\Auth.proto" GrpcServices="Server" />
     <Protobuf Include="Proto\Clinic.proto" GrpcServices="Server" />
   </ItemGroup>
 

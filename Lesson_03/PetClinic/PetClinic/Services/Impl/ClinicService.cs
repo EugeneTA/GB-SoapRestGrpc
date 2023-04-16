@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using PetClinic.Data;
 using PetClinic.Data.Tables;
 using PetClinicNamespace;
@@ -7,6 +8,7 @@ using static PetClinicNamespace.ClinicService;
 
 namespace PetClinic.Services.Impl
 {
+    [Authorize]
     public class ClinicService : ClinicServiceBase
     {
         private readonly PetClinicDbContext _dbContext;

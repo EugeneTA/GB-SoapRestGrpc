@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+option csharp_namespace = "PetClinicNamespace";
+
+// Расширение доступных типов данных для protobuf файла
+import "google/protobuf/wrappers.proto";
+
+// Расширение для даты и времени
+import "google/protobuf/timestamp.proto";
+
+service AccountService
+{
+	// Account
+	rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse);
+	rpc UpdateAccount(UpdateAccountRequets) returns (UpdateAccountResponse);
+	rpc DeleteAccount(DeleteAccountRequets) returns (DeleteAccountResponse);
+	rpc GetAccountById(GetAccountByIdRequest) returns (GetAccountByIdResponse);
+}
+
+
+// Account messages
+
+message CreateAccountRequest
+{
+	string email = 1;
+	string password = 2;
+	string firstName = 3;
+	string lastName = 4;
+	string secondName = 5;
+}
+
+message CreateAccountResponse
+{
+	// google.protobuf.Int32Value - nullable type
+	google.protobuf.Int32Value accountId = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
+message UpdateAccountRequets
+{
+	int32 accountId = 1;
+	string email = 2;
+	string firstName = 3;
+	string lastName = 4;
+	string secondName = 5;
+}
+
+message UpdateAccountResponse
+{
+	int32 errCode = 1;
+	string errMessage = 2;
+}
+
+message DeleteAccountRequets
+{
+	int32 accountId = 1;
+}
+
+message DeleteAccountResponse
+{
+	int32 errCode = 1;
+	string errMessage = 2;
+}
+
+message GetAccountByIdRequest
+{
+	int32 accountId = 1;
+}
+
+message AccountResponse
+{
+	int32 accountId = 1;
+	string email = 2;
+	string firstName = 3;
+	string lastName = 4;
+	string secondName = 5;
+} 
+
+message GetAccountByIdResponse
+{
+	AccountResponse account = 1;
+	int32 errCode = 2;
+	string errMessage = 3;
+}
+
